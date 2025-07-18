@@ -1,0 +1,34 @@
+<div class="home-container">
+    <section class="hero">
+        <h1>欢迎来到 <%= config.title %></h1>
+        <p class="hero-subtitle">
+            Cline+Moonshot AI联合开发，100% AI生成代码。Hexo响应式主题，海洋-咖啡配色，支持目录、搜索、移动端适配。
+        </p>
+    </section>
+
+    <section class="recent-posts">
+        <h2>最新文章</h2>
+        <% if (site.posts.length) { %>
+            <div class="posts-grid">
+                <% site.posts.sort('date', -1).limit(6).each(function(post) { %>
+                    <article class="post-card">
+                        <h3>
+                            <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+                        </h3>
+                        <div class="post-meta">
+                            <time datetime="<%= date_xml(post.date) %>">
+                                <%= date(post.date, 'YYYY-MM-DD') %>
+                            </time>
+                        </div>
+                        <div class="post-excerpt">
+                            <%- truncate(strip_html(post.content), {length: 120}) %>
+                        </div>
+                        <a href="<%- url_for(post.path) %>" class="read-more">阅读更多 →</a>
+                    </article>
+                <% }) %>
+            </div>
+        <% } else { %>
+            <p>暂无文章，开始写作吧！</p>
+        <% } %>
+    </section>
+</div>

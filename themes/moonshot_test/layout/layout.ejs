@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="<%= config.language || 'zh-CN' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page.title ? page.title + ' - ' : '' %><%= config.title %></title>
+    <meta name="description" content="<%= page.description || config.description %>">
+    <link rel="stylesheet" href="<%- url_for('/css/style.css') %>">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="<%- url_for('/') %>"><%= config.title %></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="<%- url_for('/') %>" class="nav-link <%= is_home() ? 'active' : '' %>">主页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<%- url_for('/catalog/') %>" class="nav-link <%= is_current('/catalog/') ? 'active' : '' %>">目录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<%- url_for('/articles/') %>" class="nav-link <%= is_current('/articles/') ? 'active' : '' %>">文章</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<%- url_for('/updates/') %>" class="nav-link <%= is_current('/updates/') ? 'active' : '' %>">更新日志</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="<%- url_for('/js/main.js') %>"></script>
+</body>
+</html>

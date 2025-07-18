@@ -1,0 +1,60 @@
+<header id="header">
+  <div id="banner">
+    <div class="banner-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+    <div class="banner-pattern"></div>
+    <div class="banner-signature"></div>
+  </div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="<%- url_for() %>" id="logo"><%= config.title %></a>
+      </h1>
+      <% if (config.subtitle) { %>
+        <h2 id="subtitle-wrap">
+          <a href="<%- url_for() %>" id="subtitle"><%= config.subtitle %></a>
+        </h2>
+      <% } %>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <% for (name in theme.menu) { %>
+          <a class="main-nav-link" href="<%- url_for(theme.menu[name]) %>"><%= __('menu.' + name.toLowerCase()) %></a>
+        <% } %>
+      </nav>
+      <nav id="sub-nav">
+        <% for (name in theme.social) { %>
+          <% if (name.toLowerCase() === 'email') { %>
+            <a id="nav-email-link" class="nav-icon" href="<%= theme.social[name] %>" title="<%= name %>">
+              <i class="fas fa-envelope"></i>
+            </a>
+          <% } else { %>
+            <a id="nav-<%= name.toLowerCase() %>-link" class="nav-icon" href="<%= theme.social[name] %>" title="<%= name %>">
+              <i class="fab fa-<%= name.toLowerCase() %>"></i>
+            </a>
+          <% } %>
+        <% } %>
+        <a id="nav-search-btn" class="nav-icon" title="<%= __('menu.search') %>">
+          <i class="fas fa-search"></i>
+        </a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="<%= __('search.placeholder') %>">
+          <button type="submit" class="search-form-submit">&#xF002;</button>
+          <input type="hidden" name="sitesearch" value="<%= config.url %>">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>

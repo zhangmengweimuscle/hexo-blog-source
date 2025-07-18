@@ -1,0 +1,29 @@
+{
+  "name": "hexo-theme-moonshot-test",
+  "version": "1.0.0",
+  "description": "A clean and minimal Hexo theme for testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "blog",
+    "minimal",
+    "responsive"
+  ],
+  "author": "Moonshot",
+  "license": "MIT",
+  "hexo": {
+    "version": ">=5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/hexo-theme-moonshot-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/hexo-theme-moonshot-test/issues"
+  },
+  "homepage": "https://github.com/your-username/hexo-theme-moonshot-test#readme"
+}

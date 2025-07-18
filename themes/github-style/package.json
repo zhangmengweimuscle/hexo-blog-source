@@ -1,0 +1,21 @@
+{
+  "name": "hexo-theme-github-style",
+  "version": "1.0.0",
+  "description": "A GitHub-style theme for Hexo with responsive layout",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "github",
+    "responsive"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-stylus": "^2.1.0"
+  }
+}

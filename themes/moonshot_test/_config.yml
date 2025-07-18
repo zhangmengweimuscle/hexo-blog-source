@@ -1,0 +1,21 @@
+# Moonshot Test Theme Configuration
+
+# Navigation menu
+nav:
+  home: /
+  catalog: /catalog/
+  articles: /articles/
+
+# Site info
+title: Moonshot Test
+subtitle: A simple Hexo theme
+description: A clean and minimal theme for Hexo
+author: Moonshot
+language: zh-CN
+timezone: Asia/Shanghai
+
+# Style settings
+styles:
+  primary_color: "#007acc"
+  background_color: "#ffffff"
+  text_color: "#333333"

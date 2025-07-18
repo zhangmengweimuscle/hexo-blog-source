@@ -1,0 +1,64 @@
+menu:
+  home: 首页
+  archives: 归档
+  categories: 分类
+  tags: 标签
+  about: 关于
+  search: 搜索
+
+sidebar:
+  overview: 站点概览
+  toc: 文章目录
+
+post:
+  posted: 发表于
+  edited: 编辑于
+  created: 创建于
+  modified: 修改于
+  edit: 编辑
+  in: 分类于
+  read_more: 阅读全文
+  untitled: 未命名
+  sticky: 置顶
+  views: 阅读次数
+  related_posts: 相关文章
+
+page:
+  totally: 共有
+  tags: 标签
+  categories: 分类
+
+footer:
+  powered: "由 %s 强力驱动"
+  theme: 主题
+  total_views: 总访问量
+  total_visitors: 总访客数
+
+counter:
+  tag_cloud: 标签云
+  categories: 分类
+  archive_posts: 归档
+
+state:
+  posts: 文章
+  pages: 页面
+  tags: 标签
+  categories: 分类
+
+search:
+  placeholder: 搜索...
+
+cheers:
+  um: 嗯..
+  ok: 还行
+  nice: 不错
+  good: 很好
+  great: 非常好
+  wonderful: 太棒了
+
+keep_on: 继续加油写博客。
+
+symbol:
+  comma: "，"
+  period: "。"
+  colon: "："

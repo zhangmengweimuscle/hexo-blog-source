@@ -1,0 +1,25 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title><% if (typeof page.title !== 'undefined') { %><%= page.title %> | <% } %><%= config.title %></title>
+<meta name="author" content="<%= config.author %>">
+<meta name="description" content="<%= config.description %>">
+<meta name="keywords" content="<%= config.keywords %>">
+
+<%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+
+<link rel="icon" href="<%- theme.favicon %>">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Source+Code+Pro:400,700">
+
+<script src="<%- url_for('/js/url-search.js') %>"></script>
+
+<% if (theme.google_analytics) { %>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<%= theme.google_analytics %>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '<%= theme.google_analytics %>');
+</script>
+<% } %>

@@ -1,0 +1,101 @@
+<div class="page-container">
+    <h1 class="page-title"><%= page.title %></h1>
+    
+    <% if (page.title === '目录') { %>
+        <div class="catalog-content">
+            <div class="search-section">
+                <h2>搜索文章</h2>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="输入关键词搜索文章标题、正文和标签..." class="search-input">
+                    <button id="search-button" class="search-button">搜索</button>
+                    <button id="clear-button" class="clear-button" style="display: none;">清除</button>
+                </div>
+                <div id="search-results" class="search-results" style="display: none;">
+                    <h3>搜索结果 <span id="search-count"></span></h3>
+                    <div id="results-container"></div>
+                </div>
+            </div>
+
+            <div id="catalog-sections">
+                <h2>文章分类</h2>
+                <% if (site.categories.length) { %>
+                    <div class="categories-list">
+                        <% site.categories.sort('name').each(function(category) { %>
+                            <div class="category-item" data-category="<%= category.name %>">
+                                <h3>
+                                    <a href="<%- url_for(category.path) %>">
+                                        <%= category.name %>
+                                        <span class="count">(<%= category.posts.length %>)</span>
+                                    </a>
+                                </h3>
+                                <% if (category.posts.length > 0) { %>
+                                    <ul class="category-posts">
+                                        <% category.posts.sort('date', -1).limit(5).each(function(post) { %>
+                                            <li data-post-id="<%= post.slug %>">
+                                                <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+                                                <time><%= date(post.date, 'MM-DD') %></time>
+                                            </li>
+                                        <% }) %>
+                                    </ul>
+                                <% } %>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } else { %>
+                    <p>暂无分类</p>
+                <% } %>
+
+                <h2>标签云</h2>
+                <% if (site.tags.length) { %>
+                    <div class="tags-cloud">
+                        <% site.tags.sort('name').each(function(tag) { %>
+                            <a href="<%- url_for(tag.path) %>" class="tag-link" style="font-size: <%= Math.min(16 + tag.posts.length * 2, 24) %>px" data-tag="<%= tag.name %>">
+                                <%= tag.name %>
+                                <span class="tag-count">(<%= tag.posts.length %>)</span>
+                            </a>
+                        <% }) %>
+                    </div>
+                <% } else { %>
+                    <p>暂无标签</p>
+                <% } %>
+            </div>
+        </div>
+    <% } else if (page.title === '文章') { %>
+        <div class="articles-content">
+            <h2>所有文章</h2>
+            <% if (site.posts.length) { %>
+                <div class="articles-list">
+                    <% site.posts.sort('date', -1).each(function(post) { %>
+                        <article class="article-item" data-post-id="<%= post.slug %>">
+                            <h3>
+                                <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+                            </h3>
+                            <div class="article-meta">
+                                <time datetime="<%= date_xml(post.date) %>">
+                                    <%= date(post.date, 'YYYY-MM-DD') %>
+                                </time>
+                                <% if (post.categories && post.categories.length) { %>
+                                    <span class="article-categories">
+                                        <% post.categories.each(function(category) { %>
+                                            <a href="<%- url_for(category.path) %>" class="category-tag"><%= category.name %></a>
+                                        <% }) %>
+                                    </span>
+                                <% } %>
+                            </div>
+                            <div class="article-excerpt">
+                                <%- truncate(strip_html(post.content), {length: 200}) %>
+                            </div>
+                            <a href="<%- url_for(post.path) %>" class="read-more">阅读全文 →</a>
+                        </article>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <p>暂无文章，开始写作吧！</p>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="page-content">
+            <%- page.content %>
+        </div>
+    <% } %>
+</div>

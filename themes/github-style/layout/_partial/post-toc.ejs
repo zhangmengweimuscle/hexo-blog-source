@@ -1,0 +1,186 @@
+<% if (is_post() && page.content) { %>
+<section class="post-toc-wrap sidebar-panel">
+  <div class="post-toc motion-element">
+    <p class="post-toc-title">文章目录</p>
+    <div class="post-toc-content" id="post-toc-content">
+      <%- toc(page.content, {
+        list_number: false,
+        max_depth: 3,
+        min_depth: 1
+      }) %>
+    </div>
+  </div>
+</section>
+
+<style>
+.post-toc-wrap {
+  margin-top: 20px;
+}
+
+.post-toc-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #24292e;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.post-toc-content {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.post-toc-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.post-toc-content ul ul {
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.post-toc-content ul ul ul {
+  padding-left: 15px;
+}
+
+.post-toc-content li {
+  margin-bottom: 5px;
+}
+
+.post-toc-content a {
+  color: #586069;
+  text-decoration: none;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.post-toc-content a:hover {
+  color: #0366d6;
+  background-color: #f6f8fa;
+  text-decoration: none;
+}
+
+.post-toc-content .toc-level-1 > a {
+  font-weight: 600;
+  color: #24292e;
+}
+
+.post-toc-content .toc-level-2 > a {
+  font-size: 13px;
+}
+
+.post-toc-content .toc-level-3 > a {
+  font-size: 12px;
+  color: #8b949e;
+}
+
+/* 修复重复序号问题 */
+.post-toc-content ol,
+.post-toc-content ul {
+  counter-reset: none;
+  list-style-type: none;
+}
+
+.post-toc-content li::before {
+  content: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .post-toc-wrap {
+    margin-top: 15px;
+  }
+  
+  .post-toc-title {
+    font-size: 14px;
+  }
+  
+  .post-toc-content {
+    font-size: 13px;
+  }
+}
+</style>
+
+<script>
+(function() {
+  'use strict';
+  
+  // 修复TOC中的重复编号问题
+  function fixTocNumbering() {
+    var tocContent = document.getElementById('post-toc-content');
+    if (!tocContent) return;
+    
+    // 移除所有可能的编号
+    var links = tocContent.querySelectorAll('a');
+    links.forEach(function(link) {
+      // 移除链接文本中的编号
+      var text = link.textContent;
+      text = text.replace(/^\d+\.\s*/, ''); // 移除 "1. " 这样的前缀
+      text = text.replace(/^\d+\s*/, '');   // 移除 "1 " 这样的前缀
+      link.textContent = text;
+    });
+    
+    // 确保没有ol元素的编号
+    var lists = tocContent.querySelectorAll('ol');
+    lists.forEach(function(list) {
+      list.style.listStyle = 'none';
+      list.style.counterReset = 'none';
+    });
+  }
+  
+  // 高亮当前阅读位置
+  function highlightCurrentSection() {
+    var tocLinks = document.querySelectorAll('.post-toc-content a');
+    var headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3');
+    
+    if (!tocLinks.length || !headings.length) return;
+    
+    function updateActiveLink() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var activeFound = false;
+      
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var heading = headings[i];
+        var rect = heading.getBoundingClientRect();
+        var top = rect.top + scrollTop;
+        
+        if (scrollTop >= top - 100) {
+          tocLinks.forEach(function(link) {
+            link.classList.remove('active');
+          });
+          
+          var id = heading.getAttribute('id');
+          var activeLink = document.querySelector('.post-toc-content a[href="#' + id + '"]');
+          if (activeLink) {
+            activeLink.classList.add('active');
+          }
+          
+          activeFound = true;
+          break;
+        }
+      }
+      
+      if (!activeFound) {
+        tocLinks.forEach(function(link) {
+          link.classList.remove('active');
+        });
+      }
+    }
+    
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink(); // 初始调用
+  }
+  
+  // 初始化
+  document.addEventListener('DOMContentLoaded', function() {
+    fixTocNumbering();
+    highlightCurrentSection();
+  });
+})();
+</script>
+<% } %>

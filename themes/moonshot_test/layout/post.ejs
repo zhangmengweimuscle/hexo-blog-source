@@ -1,0 +1,63 @@
+<div class="post-container">
+    <div class="toc-container">
+        <button class="toc-toggle" id="toc-toggle" aria-label="目录">
+            <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12h18M3 6h18M3 18h18"/>
+            </svg>
+        </button>
+        <nav class="toc-nav" id="toc-nav">
+            <h3 class="toc-title">目录</h3>
+            <ul class="toc-list" id="toc-list"></ul>
+        </nav>
+    </div>
+    
+    <article class="post">
+        <header class="post-header">
+            <h1 class="post-title"><%= page.title %></h1>
+            <div class="post-meta">
+                <time datetime="<%= date_xml(page.date) %>">
+                    <%= date(page.date, 'YYYY-MM-DD') %>
+                </time>
+                <% if (page.categories && page.categories.length) { %>
+                    <span class="post-categories">
+                        分类：
+                        <% page.categories.each(function(category, i) { %>
+                            <a href="<%- url_for('/catalog/index.html?filter=' + encodeURIComponent(category.name)) %>" class="category-link" data-category="<%= category.name %>"><%= category.name %></a>
+                            <% if (i < page.categories.length - 1) { %>, <% } %>
+                        <% }) %>
+                    </span>
+                <% } %>
+                <% if (page.tags && page.tags.length) { %>
+                    <span class="post-tags">
+                        标签：
+                        <% page.tags.each(function(tag, i) { %>
+                            <a href="<%- url_for('/catalog/index.html?filter=' + encodeURIComponent(tag.name)) %>" class="tag-link" data-tag="<%= tag.name %>">#<%= tag.name %></a>
+                            <% if (i < page.tags.length - 1) { %> <% } %>
+                        <% }) %>
+                    </span>
+                <% } %>
+            </div>
+        </header>
+
+        <div class="post-content" id="post-content">
+            <%- page.content %>
+        </div>
+
+        <footer class="post-footer">
+            <div class="post-nav">
+                <% if (page.prev) { %>
+                    <div class="post-nav-prev">
+                        <span>上一篇：</span>
+                        <a href="<%- url_for(page.prev.path) %>"><%= page.prev.title %></a>
+                    </div>
+                <% } %>
+                <% if (page.next) { %>
+                    <div class="post-nav-next">
+                        <span>下一篇：</span>
+                        <a href="<%- url_for(page.next.path) %>"><%= page.next.title %></a>
+                    </div>
+                <% } %>
+            </div>
+        </footer>
+    </article>
+</div>

@@ -1,0 +1,12 @@
+<script>
+window.blogSearchData = <%- JSON.stringify(site.posts.sort('-date').map(function(post) {
+  return {
+    title: post.title,
+    url: post.permalink,
+    date: post.date.format('YYYY-MM-DD'),
+    categories: post.categories.map(function(cat) { return cat.name; }),
+    tags: post.tags.map(function(tag) { return tag.name; }),
+    content: post.content.replace(/<[^>]*>/g, '').substring(0, 500)
+  };
+})) %>;
+</script>

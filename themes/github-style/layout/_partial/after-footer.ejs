@@ -1,0 +1,25 @@
+<%- js('js/main') %>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var sidebarToggle = document.querySelector('.sidebar-toggle');
+    var sidebar = document.querySelector('#sidebar');
+    
+    if (sidebarToggle && sidebar) {
+      sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('sidebar-active');
+      });
+    }
+    
+    var searchBtn = document.querySelector('#nav-search-btn');
+    var searchForm = document.querySelector('#search-form-wrap');
+    
+    if (searchBtn && searchForm) {
+      searchBtn.addEventListener('click', function() {
+        searchForm.classList.toggle('on');
+        if (searchForm.classList.contains('on')) {
+          searchForm.querySelector('.search-form-input').focus();
+        }
+      });
+    }
+  });
+</script>

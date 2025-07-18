@@ -1,0 +1,23 @@
+<% if (page.total > 1) { %>
+  <nav class="pagination">
+    <% if (page.prev) { %>
+      <a class="extend prev" rel="prev" href="<%- url_for(page.prev_link) %>">
+        <i class="fas fa-angle-left"></i>
+      </a>
+    <% } %>
+    
+    <% for (var i = 1; i <= page.total; i++) { %>
+      <% if (i == page.current) { %>
+        <span class="page-number current"><%= i %></span>
+      <% } else { %>
+        <a class="page-number" href="<%- url_for(page.base + (i == 1 ? '' : 'page/' + i + '/')) %>"><%= i %></a>
+      <% } %>
+    <% } %>
+    
+    <% if (page.next) { %>
+      <a class="extend next" rel="next" href="<%- url_for(page.next_link) %>">
+        <i class="fas fa-angle-right"></i>
+      </a>
+    <% } %>
+  </nav>
+<% } %>

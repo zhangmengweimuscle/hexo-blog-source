@@ -1,0 +1,83 @@
+<div class="search-section">
+  <div class="search-container">
+    <div class="search-box">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="search-input" placeholder="搜索文章..." class="search-input">
+      <button id="search-clear" class="search-clear" style="display: none;">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div id="search-results" class="search-results" style="display: none;"></div>
+  </div>
+</div>
+
+<div id="posts-container">
+  <% page.posts.each(function(post) { %>
+    <article class="post post-type-compact" itemscope itemtype="http://schema.org/Article">
+      <div class="post-compact-content">
+        <div class="post-main-info">
+          <h2 class="post-title" itemprop="name headline">
+            <a class="post-title-link" href="<%- url_for(post.path) %>"><%= post.title || __('post.untitled') %></a>
+          </h2>
+          
+          <div class="post-excerpt">
+            <% 
+              var excerpt = '';
+              if (post.excerpt && post.excerpt.trim()) {
+                excerpt = post.excerpt;
+              } else {
+                var content = post.content || '';
+                // Remove images and clean
+                content = content.replace(/<img[^>]*>/gi, '');
+                content = content.replace(/!\[.*?\]\([^)]*\)/gi, '');
+                content = strip_html(content);
+                content = content.replace(/\s+/g, ' ').trim();
+                
+                if (content.length > 10) {
+                  excerpt = truncate(content, {length: 120});
+                } else {
+                  excerpt = '阅读全文了解详情...';
+                }
+              }
+            %>
+            <%- excerpt %>
+          </div>
+          
+          <div class="post-meta-compact">
+            <span class="post-date">
+              <i class="far fa-calendar"></i>
+              <%= date(post.date, 'MMM DD, YYYY') %>
+            </span>
+            
+            <% if (post.categories && post.categories.length) { %>
+              <span class="post-categories">
+                <i class="far fa-folder"></i>
+                <% post.categories.forEach(function(category, i) { %>
+                  <a href="<%- url_for(category.path) %>" class="category-tag"><%= category.name %></a>
+                  <% if (i < post.categories.length - 1) { %>, <% } %>
+                <% }) %>
+              </span>
+            <% } %>
+            
+            <% if (post.tags && post.tags.length) { %>
+              <span class="post-tags">
+                <% post.tags.forEach(function(tag) { %>
+                  <span class="tag">#<%= tag.name %></span>
+                <% }) %>
+              </span>
+            <% } %>
+          </div>
+        </div>
+        
+        <div class="post-actions">
+          <a href="<%- url_for(post.path) %>" class="read-more-btn">
+            Read More
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </article>
+  <% }) %>
+</div>
+
+<%- partial('_partial/pagination') %>

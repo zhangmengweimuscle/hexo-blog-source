@@ -1,0 +1,64 @@
+menu:
+  home: Home
+  archives: Archives
+  categories: Categories
+  tags: Tags
+  about: About
+  search: Search
+
+sidebar:
+  overview: Overview
+  toc: Table of Contents
+
+post:
+  posted: Posted on
+  edited: Edited on
+  created: Created
+  modified: Modified
+  edit: Edit this post
+  in: In
+  read_more: Read more
+  untitled: Untitled
+  sticky: Sticky
+  views: Views
+  related_posts: Related Posts
+
+page:
+  totally: Totally
+  tags: tags
+  categories: categories
+
+footer:
+  powered: "Powered by %s"
+  theme: Theme
+  total_views: Total Views
+  total_visitors: Total Visitors
+
+counter:
+  tag_cloud: Tag Cloud
+  categories: Categories
+  archive_posts: Archive
+
+state:
+  posts: posts
+  pages: pages
+  tags: tags
+  categories: categories
+
+search:
+  placeholder: Searching...
+
+cheers:
+  um: Um..
+  ok: OK
+  nice: Nice
+  good: Good
+  great: Great
+  wonderful: Wonderful
+
+keep_on: Keep on posting.
+
+symbol:
+  comma: ", "
+  period: ". "
+  colon: ": "

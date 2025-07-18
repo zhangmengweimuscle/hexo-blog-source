@@ -1,0 +1,16 @@
+<script>
+(function() {
+  window.blogSearchData = [
+    <% site.posts.sort('-date').each(function(post, i) { %>
+    {
+      "title": "<%= post.title %>",
+      "url": "<%= post.permalink %>",
+      "date": "<%= post.date.format('YYYY-MM-DD') %>",
+      "categories": [<%- post.categories.map(function(cat) { return '"' + cat.name + '"'; }).join(', ') %>],
+      "tags": [<%- post.tags.map(function(tag) { return '"' + tag.name + '"'; }).join(', ') %>],
+      "content": "<%= post.content.replace(/"/g, '\\"').replace(/\n/g, ' ').replace(/<[^>]*>/g, '').substring(0, 300) %>..."
+    }<%= i < site.posts.length - 1 ? ',' : '' %>
+    <% }); %>
+  ];
+})();
+</script>

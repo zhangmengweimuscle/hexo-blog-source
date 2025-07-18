@@ -1,0 +1,60 @@
+<aside id="sidebar">
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line"></span>
+      <span class="sidebar-toggle-line"></span>
+      <span class="sidebar-toggle-line"></span>
+    </div>
+  </div>
+  
+  <div id="sidebar-inner">
+    <section class="site-overview-wrap sidebar-panel">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <img class="site-author-image" itemprop="image" src="<%- theme.avatar || '/images/avatar.png' %>" alt="<%= config.author %>">
+        <p class="site-author-name" itemprop="name"><%= config.author %></p>
+        <p class="site-description motion-element" itemprop="description"><%= config.description %></p>
+      </div>
+      
+      <nav class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <a href="<%- url_for('/archives') %>">
+            <span class="site-state-item-count"><%= site.posts.length %></span>
+            <span class="site-state-item-name"><%= __('state.posts') %></span>
+          </a>
+        </div>
+        
+        <div class="site-state-item site-state-categories">
+          <a href="<%- url_for('/categories') %>">
+            <span class="site-state-item-count"><%= site.categories.length %></span>
+            <span class="site-state-item-name"><%= __('state.categories') %></span>
+          </a>
+        </div>
+        
+        <div class="site-state-item site-state-tags">
+          <a href="<%- url_for('/tags') %>">
+            <span class="site-state-item-count"><%= site.tags.length %></span>
+            <span class="site-state-item-name"><%= __('state.tags') %></span>
+          </a>
+        </div>
+      </nav>
+      
+      <% if (theme.social) { %>
+        <div class="links-of-author motion-element">
+          <% for (name in theme.social) { %>
+            <span class="links-of-author-item">
+              <a href="<%= theme.social[name] %>" target="_blank" title="<%= name %>">
+                <% if (name.toLowerCase() === 'email') { %>
+                  <i class="fas fa-envelope"></i><%= name %>
+                <% } else { %>
+                  <i class="fab fa-<%= name.toLowerCase() %>"></i><%= name %>
+                <% } %>
+              </a>
+            </span>
+          <% } %>
+        </div>
+      <% } %>
+    </section>
+    
+    <%- partial('_partial/post-toc') %>
+  </div>
+</aside>

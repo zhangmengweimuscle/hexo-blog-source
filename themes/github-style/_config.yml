@@ -1,0 +1,52 @@
+# GitHub Style Theme Configuration
+
+# Header
+menu:
+  Home: /
+  Archives: /archives
+  Categories: /categories
+  Tags: /tags
+  About: /about
+
+# Social Links
+social:
+  GitHub: https://github.com/zhangmengweimuscle/
+  Twitter: https://x.com/zhangmuscle/
+  Email: mailto:zhangmengweimusclea@email.com
+
+# Site Settings
+favicon: /favicon.ico
+avatar: /images/avatar.png
+
+# Sidebar
+sidebar:
+  position: left
+  display: post
+  padding: 18
+  offset: 12
+
+# Footer
+since: 2024
+
+# Comments
+gitalk:
+  enable: false
+  clientID: 
+  clientSecret: 
+  repo: 
+  owner: 
+  admin: []
+
+# Analytics
+google_analytics: 
+baidu_analytics: 
+
+# Miscellaneous
+widgets:
+- category
+- tag
+- archive
+- recent_posts
+
+# Excerpt
+excerpt_link: Read More
