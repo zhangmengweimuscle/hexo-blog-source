@@ -13,6 +13,11 @@ tags: [佛得角, 爵士乐, Césaria Évora, 殖民历史, 音乐文化, sodade
 
 1992年，当Césaria Évora用她醇厚的女中音在《Miss Perfumado》专辑中唱出《Sodade》时，整个世界第一次如此真切地听到了来自佛得角的声音[^1]。这个位于非洲西海岸外、由10个火山岛组成的国家，通过这首融合了morna（莫尔纳）传统与爵士乐元素的歌曲，将其独特的文化密码传递给了全球听众。然而，要真正理解《Sodade》背后深厚的文化积淀，我们必须回溯五个多世纪的殖民历史，探寻爵士乐在这片"大西洋眼泪"之地的生根发芽。
 
+<div style="text-align: center; margin: 30px 0;">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=2892590&auto=0&height=66" style="border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></iframe>
+  <p style="font-size: 0.9em; color: #666; margin-top: 8px;"><em>聆听Césaria Évora的经典之作</em></p>
+</div>
+
 ## 第一章：殖民历史的伤痕与馈赠（1460-1975）
 
 ### 1.1 葡萄牙帝国的蓝色疆土
